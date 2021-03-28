@@ -2,71 +2,126 @@
 
 class Film  {
 
-    private $title;                // titre de film
-    private $releaseDate;          // date de sortie de film en France 
-    private $duration;             // durée de film  (en minutes)
-    private $filmDirector;         // réalisateur de film
+    private $_title;                // titre de film
+    private $_releaseDate;          // date de sortie de film en France 
+    private $_duration;             // durée de film  (en minutes)
+    private $_filmDirector;         // réalisateur de film
+    private $_synopsis;
+    private $_casting;
+    private $_filmGenre;
+    
 
-    public function __construct(string $title = "N/A", string  $releaseDate = "N/A", int $duration = 0, FilmDirector $filmDirector = NULL) {
-        $this->title = $title;
-        $this->releaseDate = new DateTime ($releaseDate);
-        $this->duration = $duration;
-        $this->filmDirector = $filmDirector;
+    public function __construct(string $title = "N/A", string  $releaseDate = "N/A", int $duration = 0, FilmDirector $filmDirector = NULL, FilmGenre $filmGenre = NULL ) {
+       
+        $this->_title = $title;
+        $this->_releaseDate = new DateTime ($releaseDate);
+        $this->_duration = $duration;
+        $this->_filmDirector = $filmDirector;
+        $this->_synopsis = "";
+        $this->_casting = NULL;
+        $this->_filmGenre = $filmGenre;
+        $this->_filmGenre->addFilm($this);              // dès la construction du Film, celui-ci s'ajoute automatiquement chez le genre de film concerné
+        $this->_filmDirector->addFilm($this);           // dès la construction du Film, celui-ci s'ajoute automatiquement chez le réalisateur de film concerné
+    }
+
+    
+
+    public function get_title()
+    {
+        return $this->_title;
     }
 
 
-    public function getTitle()
+    public function set_title($_title)
     {
-        return $this->title;
-    }
-
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
+        $this->_title = $_title;
 
         return $this;
+    }
+
+
+    public function get_releaseDate()
+    {
+        return $this->_releaseDate->format("d-m-Y");
     }
 
  
-    public function getReleaseDate()
+    public function set_releaseDate($_releaseDate)
     {
-        return $this->releaseDate->format("d-m-Y");
-    }
-
-
-    public function setReleaseDate($releaseDate)
-    {
-        $this->releaseDate = $releaseDate;
+        $this->_releaseDate = $_releaseDate;
 
         return $this;
     }
 
 
-    public function getDuration()
+    public function get_duration()
     {
-        return $this->duration;
+        return $this->_duration;
     }
 
 
-    public function setDuration($duration)
+    public function set_duration($_duration)
     {
-        $this->duration = $duration;
+        $this->_duration = $_duration;
 
         return $this;
     }
 
 
-    public function getFilmDirector()
+    public function get_filmDirector()
     {
-        return $this->filmDirector;
+        return $this->_filmDirector;
     }
 
 
-    public function setFilmDirector($filmDirector)
+    public function set_filmDirector($_filmDirector)
     {
-        $this->filmDirector = $filmDirector;
+        $this->_filmDirector = $_filmDirector;
+
+        return $this;
+    }
+
+
+
+    public function get_filmGenre()
+    {
+        return $this->_filmGenre;
+    }
+
+  
+    public function set_filmGenre($_filmGenre)
+    {
+        $this->_filmGenre = $_filmGenre;
+
+        return $this;
+    }
+
+    public function get_synopsis()
+    {
+        return $this->_synopsis;
+    }
+
+    public function set_synopsis($_synopsis)
+    {
+        $this->_synopsis = $_synopsis;
+
+        return $this;
+    }
+
+
+    public function get_casting()
+    {
+        return $this->_casting;
+    }
+
+
+    public function set_casting (Casting $_casting)
+    {
+        $this->_casting = $_casting;
 
         return $this;
     }
 }
+
+
+ 

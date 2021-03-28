@@ -1,69 +1,74 @@
 <?php
 
 class Person {
-    protected $lastName;
-    protected $firstName;
-    protected $sex;
-    protected $dateOfBirth;
+    protected $_lastName;
+    protected $_firstName;
+    protected $_sex;
+    protected $_dateOfBirth;
 
     public function __construct(string $lastName = "N/A", string $firstName = "N/A", string $sex = "N/A", string $dateOfBirth = "N/A") {
-        $this->lastName = $lastName;
-        $this->firstName = $firstName;
-        $this->sex = $sex;
-        $this->dateOfBirth = new DateTime ($dateOfBirth);
+        $this->_lastName = $lastName;
+        $this->_firstName = $firstName;
+        $this->_sex = $sex;
+        $this->_dateOfBirth = new DateTime ($dateOfBirth);
     }
    
-
-    public function getLastName()
+    public function __toString()
     {
-        return $this->lastName;
+        return $this->_firstName." ".$this->_lastName;
     }
 
- 
-    public function setLastName($lastName)
+
+    public function get_lastName()
     {
-        $this->lastName = $lastName;
+        return $this->_lastName;
+    }
+
+
+    public function set_lastName($_lastName)
+    {
+        $this->_lastName = $_lastName;
 
         return $this;
     }
 
-    public function getFirstName()
+    public function get_firstName()
     {
-        return $this->firstName;
+        return $this->_firstName;
     }
 
  
-    public function setFirstName($firstName)
+    public function set_firstName($_firstName)
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-
-    public function getSex()
-    {
-        return $this->sex;
-    }
-
- 
-    public function setSex($sex)
-    {
-        $this->sex = $sex;
+        $this->_firstName = $_firstName;
 
         return $this;
     }
 
 
-    public function getDateOfBirth()
+    public function get_sex()
     {
-        return $this->dateOfBirth->format("d-m-Y");
+        return $this->_sex;
     }
 
 
-    public function setDateOfBirth($dateOfBirth)
+    public function set_sex($_sex)
     {
-        $this->dateOfBirth = $dateOfBirth;
+        $this->_sex = $_sex;
+
+        return $this;
+    }
+
+
+    public function get_dateOfBirth()
+    {
+        return $this->_dateOfBirth->format("d-m-Y");
+    }
+
+
+    public function set_dateOfBirth($_dateOfBirth)
+    {
+        $this->_dateOfBirth = $_dateOfBirth;
 
         return $this;
     }
